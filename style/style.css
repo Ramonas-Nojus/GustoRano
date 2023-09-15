@@ -1,0 +1,351 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  /* Header styles */
+  header {
+    background-color: #9D004B;
+    color: #FFF;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  nav a {
+    color: #FFF;
+    text-decoration: none;
+    margin: 0 1rem;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: black;
+  }
+
+  /* Hero section styles */
+  .hero {
+    background-image: url('https://img.freepik.com/free-photo/ingredients-cabbage-carrot-pie-cabbage-carrots-eggs-flour-milk-butter-spices-white-background_127032-2819.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 5rem 0;
+  }
+
+  .hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn-hero {
+    background-color: #9D004B;
+    color: #FFF;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .btn-hero:hover {
+    background-color: #7A002F;
+  }
+
+  /* Featured articles section styles */
+  .featured-articles {
+    text-align: center;
+    padding: 3rem 0;
+    background-color: #F9F9F9;
+  }
+
+  .article-card {
+    background-color: #FFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    padding: 1.5rem;
+    display: inline-block;
+    width: calc(33.33% - 2rem);
+    box-sizing: border-box;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .article-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .article-card p {
+    font-size: 1rem;
+    color: #666;
+  }
+
+  /* Trending recipes section styles */
+  .trending-recipes {
+    text-align: center;
+    background-color: #FFF;
+    padding: 3rem 0;
+  }
+  
+  /* Search styles */
+  .search-container {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #search {
+    padding: 0.5rem;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    width: 60%;
+    font-size: 1rem;
+  }
+  
+  .btn-search {
+    background-color: #9D004B;
+    color: #FFF;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-search:hover {
+    background-color: #7A002F;
+  }
+
+  .recipe-card {
+    background-color: #FDF4EA;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    padding: 1.5rem;
+    display: inline-block;
+    width: calc(33.33% - 2rem);
+    box-sizing: border-box;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .recipe-card img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+
+  .recipe-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .recipe-card p {
+    font-size: 1rem;
+    color: #666;
+  }
+
+  .recipe-card button {
+    background-color: #9D004B;
+    color: #FFF;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .recipe-card button:hover {
+    background-color: #7A002F;
+  }
+
+  /* Signup/login section styles */
+  .signup-login {
+    text-align: center;
+    background-color: #F9F9F9;
+    padding: 3rem 0;
+  }
+
+  .signup-login h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .signup-login p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .btn-signup, .btn-login {
+    background-color: #9D004B;
+    color: #FFF;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .btn-signup:hover, .btn-login:hover {
+    background-color: #7A002F;
+  }
+
+  /* Footer styles */
+  footer {
+    background-color: #333;
+    color: #FFF;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  #search {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    width: 60%;
+    font-size: 1rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-search {
+    background-color: #9D004B;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-search:hover {
+    background-color: #7A002F;
+}
+
+.search-results {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-results h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.search-results p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.result-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.result-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.result-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.result-card p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.result-card a {
+    display: inline-block;
+    margin-top: 1rem;
+    background-color: #9D004B;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+.result-card a:hover {
+    background-color: #7A002F;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    .search-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #search {
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+    }
+
+    .btn-search {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .result-card {
+        margin-top: 1rem;
+    }
+
+    /* Mobile optimization for Trending Recipes */
+    .trending-recipes .recipe-card {
+        width: 100%; /* Display cards in one column on mobile */
+    }
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+  /* Mobile optimization for Trending Recipes */
+  .trending-recipes .recipe-card {
+      width: 100%; /* Display cards in one column on mobile */
+  }
+
+  /* Mobile optimization for Featured Articles */
+  .featured-articles .article-card {
+      width: 100%; /* Display cards in one column on mobile */
+  }
+}
