@@ -4,24 +4,30 @@
 <?php
     $recipes = new Recipes;
 
-    $per_page = 10;
+
+    $totalItems = $recipes->getTableLength();
+    $itemsPerPage = 10;
+
+    $totalPages = ceil($totalItems / $itemsPerPage);
+
 
     if(isset($_GET['page'])) {
-
-        $page = $_GET['page'];
+        $page = intval($_GET['page']);
     } else {
-        $page = "";
+        $page = 1;
+    }
+    if($page == 1) {
+        $offset = 0;
+    } else {
+        $offset = ($page * $itemsPerPage) - $itemsPerPage;
     }
 
-    if($page == "" || $page == 1) {
-        $page_1 = 0;
-    } else {
-        $page_1 = ($page * $per_page) - $per_page;
-    }
 
-    $recipe = $recipes->getAllRecipes($page_1, $per_page);
+    $maxLinks = 10;
 
-    $count = $recipes->getTableLength();
+    $recipe = $recipes->getAllRecipes($offset);
+
+
 
 ?>
     <main>
@@ -47,10 +53,42 @@
             </div>
             <?php } ?>
         </section>
+
+        <?php
+
+        // Calculate the start and end page numbers for the pagination links
+        $startPage = max(1, $page - floor($maxLinks / 2));
+        $endPage = min($totalPages, $startPage + $maxLinks - 1);
+
+        // Generate pagination links
+        echo '<div class="pagination">';
+        if ($startPage > 1) {
+            echo "<a href='?page=1'>1</a>";
+            if ($startPage > 2) {
+                echo '<span>...</span>';
+            }
+        }
+        for ($i = $startPage; $i <= $endPage; $i++) {
+            if ($i == $page) {
+                echo "<span class='current-page'>$i</span>";
+            } else {
+                echo "<a href='?page=$i'>$i</a>";
+            }
+        }
+        if ($endPage < $totalPages) {
+            if ($endPage < $totalPages - 1) {
+                echo '<span>...</span>';
+            }
+            echo "<a href='?page=$totalPages'>$totalPages</a>";
+        }
+        echo '</div>';
+        ?>
+
+
     </main>
 
     <footer>
-        <p>&copy; 2023 Delicious Eats</p>
+        <p>&copy; 2023 GustoRano</p>
     </footer>
 </body>
 </html>

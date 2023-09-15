@@ -1,11 +1,10 @@
 <?php 
 
 Class Recipes extends Db {
-    public function getAllRecipes($from, $to) {
-        $sql = "SELECT * FROM recipes ORDER BY name DESC LIMIT :page_1, :per_page";
+    public function getAllRecipes($offset) {
+        $sql = "SELECT * FROM recipes ORDER BY name DESC LIMIT 10 OFFSET :offset";
         $stmt = $this->connection()->prepare($sql);
-        $stmt->bindValue(":page_1", $from, PDO::PARAM_INT);
-        $stmt->bindValue(":per_page", $to, PDO::PARAM_INT);
+        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
