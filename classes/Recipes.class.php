@@ -1,27 +1,31 @@
 <?php 
 
 Class Recipes extends Db {
-    public function getAllRecipes($offset) {
-        $sql = "SELECT * FROM recipes ORDER BY name DESC LIMIT 10 OFFSET :offset";
-        $stmt = $this->connection()->prepare($sql);
-        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
 
-    public function getTrendingRecipes(){
-        $sql = "SELECT * FROM recipes ORDER BY views DESC LIMIT 3";
-        $stmt = $this->connection()->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    public function getRecipesByName($query) {
 
-    public function getTableLength(){
-        $sql = "SELECT id FROM recipes";
-        $stmt = $this->connection()->prepare($sql);
-        $stmt->execute();
-        return $stmt->rowCount();
-    }
+        $apiUrl = 'https://www.themealdb.com/api/json/v1/1/search.php';
 
+        // Append parameters to the URL
+        $apiUrl .= '?s=' . urlencode($query);
+
+        $ch = curl_init($apiUrl);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            echo 'Curl error: ' . curl_error($ch);
+        }
+
+        curl_close($ch);
+
+        if ($response) {
+            return $data = json_decode($response, true);
+            print_r($data['meals'][0]['strMeal']);
+        } else {
+            echo 'No response received from the API';
+        }
+    }
 }

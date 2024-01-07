@@ -22,33 +22,28 @@
     </div>
   </section>
 
+<?php 
+
+$recipes = new Recipes();
+
+
+?>
+
   <section class="trending-recipes">
     <h2>Trending Recipes</h2>
-    <div class="search-container">
-      <input type="text" id="search" placeholder="Search recipes...">
-      <button class="btn-search">Search</button>
-    </div>
-    <?php 
-    
-    $recipes = New Recipes;
+    <form action="explore.php" method="">
+      <div class="search-container">
+          <input type="text" id="search" name='search' placeolder="Search recipes...">
+          <input type='submit' value='search' class="btn-search">
+      </div>
+    </form>
 
-    $recipe = $recipes->getTrendingRecipes();
-
-     foreach($recipe as $row){ 
-
-      if(isset(explode('"', $row['images'])[1])) {
-        $img = explode('"', $row['images'])[1];
-      } else {
-        $img = "images/neptune-placeholder-48.jpg";
-      }
-    ?>
     <div class="recipe-card">
-      <img src="<?php echo $img; ?>" alt="Trending Recipe 1">
-      <h3><?php echo $row['name']; ?> </h3>
+      <img src="" alt="Trending Recipe 1">
+      <h3>$row['name']</h3>
       <p><?php echo $row['description']; ?></p>
       <button class="btn-recipe">Get Recipe</button>
     </div>
-    <?php } ?>
   </section>
 
   <section class="signup-login">

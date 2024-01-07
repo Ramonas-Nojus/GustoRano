@@ -2,10 +2,17 @@
 
 <link rel="stylesheet" href="style/explore.css"> <!-- Include your CSS file here -->
 <?php
-    $recipes = new Recipes;
+    $recipe = new Recipes;
 
+    if(isset($_GET['search'])){
+        $query = $_GET['search'];
+     } else {
+        header("Location: index.php");
+    }
 
-    $totalItems = $recipes->getTableLength();
+    $recipes = $recipe->getRecipesByName($query);
+
+    $totalItems = count($recipes['meals']);;
     $itemsPerPage = 10;
 
     $totalPages = ceil($totalItems / $itemsPerPage);
@@ -25,31 +32,33 @@
 
     $maxLinks = 10;
 
-    $recipe = $recipes->getAllRecipes($offset);
-
-
+    if($totalItems < $itemsPerPage){
+        $itemsPerPage = $totalItems;
+    }
 
 ?>
     <main>
         <section class="search-results">
             <h2>Explore GustoRano:</h2>
             <!-- <p>Displaying results for "<span id="search-query">Your Search Query</span>":</p> -->
-            <?php foreach($recipe as $row) { 
-                $title = $row['name'];
-                $desc = str_replace(" from Food.com", "", $row['description']);
+            <?php for($i = $offset; $i < $offset + $itemsPerPage; $i++) {
 
-                if(isset(explode('"', $row['images'])[1])) {
-                    $img = explode('"', $row['images'])[1];
+                if($i == $totalItems) break;
+
+                $id = $recipes['meals'][$i]['idMeal'];
+                $title = $recipes['meals'][$i]['strMeal'];
+
+                if(isset($recipes['meals'][$i]['strMealThumb'])) {
+                    $img = $recipes['meals'][$i]['strMealThumb'];
                 } else {
                     $img = "images/neptune-placeholder-48.jpg";
                 }
 
             ?>
             <div class="result-card">
-                <img src="<?php echo $img; ?>" alt="Recipe Image 1" style="width: 60%">
+                <img src="<?php echo $img; ?>" alt="Recipe Image 1" style="width: 40%">
                 <h3><?php echo $title; ?></h3>
-                <p><?php echo $desc; ?></p>
-                <a href="#">Read More</a>
+                <a href="recipe.php?recipe_id=<?php echo $id; ?>">Read More</a>
             </div>
             <?php } ?>
         </section>
@@ -63,7 +72,7 @@
         // Generate pagination links
         echo '<div class="pagination">';
         if ($startPage > 1) {
-            echo "<a href='?page=1'>1</a>";
+            echo "<a href='?search=$query&page=1'>1</a>";
             if ($startPage > 2) {
                 echo '<span>...</span>';
             }
@@ -72,14 +81,14 @@
             if ($i == $page) {
                 echo "<span class='current-page'>$i</span>";
             } else {
-                echo "<a href='?page=$i'>$i</a>";
+                echo "<a href='?search=$query&page=$i'>$i</a>";
             }
         }
         if ($endPage < $totalPages) {
             if ($endPage < $totalPages - 1) {
                 echo '<span>...</span>';
             }
-            echo "<a href='?page=$totalPages'>$totalPages</a>";
+            echo "<a href='?search=$query&page=$totalPages'>$totalPages</a>";
         }
         echo '</div>';
         ?>
