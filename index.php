@@ -30,7 +30,6 @@ $recipes = new Recipes();
 ?>
 
   <section class="trending-recipes">
-    <h2>Trending Recipes</h2>
     <form action="explore.php" method="">
       <div class="search-container">
           <input type="text" id="search" name='search' placeolder="Search recipes...">
@@ -38,12 +37,17 @@ $recipes = new Recipes();
       </div>
     </form>
 
+    <h2>Random picks</h2>
+
+    <?php for($i = 0; $i<3; $i++){
+        $recipe = $recipes->getRandomRecipe();  
+    ?>
     <div class="recipe-card">
-      <img src="" alt="Trending Recipe 1">
-      <h3>$row['name']</h3>
-      <p><?php echo $row['description']; ?></p>
-      <button class="btn-recipe">Get Recipe</button>
+        <img src="<?php echo $recipe['strMealThumb']; ?>" alt="Trending Recipe 1">
+        <h3><?php echo $recipe['strMeal']; ?></h3>
+        <a href="/recipe.php?recipe_id=<?php echo $recipe['idMeal']; ?>" class="btn-recipe">Read More</a>
     </div>
+    <?php } ?>
   </section>
 
   <section class="signup-login">

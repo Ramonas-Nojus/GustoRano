@@ -34,28 +34,43 @@
 </head>
 <body>
 
+<?php 
 
+        if(isset($_GET['recipe_id'])){
+            $id = $_GET['recipe_id'];
+        } else {
+            header("Location: index.php");
+        }
+
+        $recipes = new Recipes();
+        $recipe = $recipes->getRecipeById($id);
+
+?>
    
     <div class="container">
-        <h1><?php echo $recipe['name']; ?></h1>
+        <img src="<?php echo $recipe['strMealThumb']; ?>">
+        <h1><?php echo $recipe['strMeal']; ?></h1>
         <h2>Ingredients:</h2>
         <ul>
-            <?php foreach($ingredients as $ingredient) { ?>
-            <li><?php echo $ingredient; ?></li>
+            <?php for($i = 1; $i <=20; $i++) {
+                if($recipe['strIngredient'.$i] == "") break;    
+            ?>
+            <li><?php echo $recipe['strIngredient'.$i]; ?>  :  <?php echo $recipe['strMeasure'.$i]; ?></li>
             <?php } ?>
         </ul>
 
         <h2>Instructions:</h2>
-        <ol>
-            <li>Step 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Step 2: Nullam in est nec odio sagittis consectetur ac a erat.</li>
-            <li>Step 3: Integer vehicula ex eu nisi laoreet, in tristique tortor bibendum.</li>
-            <!-- Add more steps as needed -->
-        </ol>
+        <?php
+            echo str_replace("\r\n",'<br>',$recipe['strInstructions']);
+        ?>
 
     </div>
     <footer>
     <p>&copy; 2023 Delicious Eats</p>
   </footer>
 </body>
+<script>
+    const regex = /\\n|\\r\\n|\\n\\r|\\r/g;
+    string.replace(regex, '<br>');
+</script>
 </html>

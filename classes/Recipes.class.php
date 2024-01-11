@@ -28,4 +28,52 @@ Class Recipes extends Db {
             echo 'No response received from the API';
         }
     }
+
+    public function getRecipeById($id) {
+
+        $apiUrl = 'https://www.themealdb.com/api/json/v1/1/lookup.php';
+
+        $apiUrl .= '?i=' . urlencode($id);
+
+        $ch = curl_init($apiUrl);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            echo 'Curl error: ' . curl_error($ch);
+        }
+
+        curl_close($ch);
+
+        if ($response) {
+            return $data = json_decode($response, true)['meals'][0];
+        } else {
+            echo 'No response received from the API';
+        }
+    }
+
+    public function getRandomRecipe() {
+
+        $apiUrl = 'https://www.themealdb.com/api/json/v1/1/random.php';
+
+        $ch = curl_init($apiUrl);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            echo 'Curl error: ' . curl_error($ch);
+        }
+
+        curl_close($ch);
+
+        if ($response) {
+            return $data = json_decode($response, true)['meals'][0];
+        } else {
+            echo 'No response received from the API';
+        }
+    }
 }

@@ -39,7 +39,14 @@
 ?>
     <main>
         <section class="search-results">
+            
             <h2>Explore GustoRano:</h2>
+                <form action="explore.php" method="">
+                    <div class="search-container">
+                        <input type="text" id="search" name='search' placeolder="Search recipes...">
+                        <input type='submit' value='search' class="btn-search">
+                    </div>
+                </form>
             <!-- <p>Displaying results for "<span id="search-query">Your Search Query</span>":</p> -->
             <?php for($i = $offset; $i < $offset + $itemsPerPage; $i++) {
 
