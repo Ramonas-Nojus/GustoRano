@@ -1,6 +1,6 @@
 <?php 
 
-Class Recipes extends Db {
+Class Recipes {
 
     public function getRecipesByName($query) {
 
